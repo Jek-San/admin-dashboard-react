@@ -1,32 +1,35 @@
-import "./userList.css"
+import "./productList.css"
 import { DataGrid } from "@mui/x-data-grid"
 import { DeleteOutline } from "@mui/icons-material"
-import { userRows } from "../../dummyData"
+import { productsRows } from "../../dummyData"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export default function UserList() {
-  const [data, setData] = useState(userRows)
+import React from "react"
+
+const ProductList = () => {
+  const [data, setData] = useState(productsRows)
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id))
   }
+
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     {
-      field: "user",
-      headerName: "User",
+      field: "product",
+      headerName: "Product",
       width: 200,
       renderCell: (params) => {
         return (
-          <div className="userListUser">
-            <img src={params.row.avatar} alt="avatar" className="userListImg" />
-            {params.row.username}
+          <div className="productListUser">
+            <img src={params.row.img} alt="avatar" className="productListImg" />
+            {params.row.name}
           </div>
         )
       },
     },
-    { field: "email", headerName: "Email", width: 130 },
+    { field: "stock", headerName: "Stock", width: 130 },
     {
       field: "status",
       headerName: "Status",
@@ -34,8 +37,8 @@ export default function UserList() {
       width: 90,
     },
     {
-      field: "transaction",
-      headerName: "Transaction Volume",
+      field: "price",
+      headerName: "Price",
 
       width: 160,
     },
@@ -46,8 +49,8 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row.id}>
-              <button className="userListEdit">Edit</button>
+            <Link to={"/product/" + params.row.id}>
+              <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline
               onClick={() => {
@@ -62,7 +65,7 @@ export default function UserList() {
   ]
 
   return (
-    <div className="userList">
+    <div className="productList">
       <div style={{ height: "100%", width: "100%" }}>
         <DataGrid
           rows={data}
@@ -80,3 +83,5 @@ export default function UserList() {
     </div>
   )
 }
+
+export default ProductList
