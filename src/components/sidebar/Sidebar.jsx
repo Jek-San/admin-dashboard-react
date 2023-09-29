@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import "./sidebar.css"
 import {
   LineStyle,
@@ -14,21 +14,32 @@ import {
   WorkOutline,
   Report,
 } from "@mui/icons-material"
+import { useState } from "react"
 
 export default function Sidebar() {
+  const location = useLocation().pathname
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
-            <Link to="/">
-              <li className="sidebarListItem active">
+            <Link to="/" className="link">
+              <li
+                className={`sidebarListItem ${
+                  location === "/" ? "active" : ""
+                }`}
+              >
                 <LineStyle className="sidebarIcon" />
                 Home
               </li>
             </Link>
-            <li className="sidebarListItem">
+            <li
+              className={`sidebarListItem ${
+                location === "/analytic" ? "active" : ""
+              }`}
+            >
               <Timeline className="sidebarIcon" />
               Analytics
             </li>
@@ -42,18 +53,30 @@ export default function Sidebar() {
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
             <Link to="/users" className="link">
-              <li className="sidebarListItem">
+              <li
+                className={`sidebarListItem ${
+                  location === "/users" ? "active" : ""
+                }`}
+              >
                 <PermIdentity className="sidebarIcon" />
                 Users
               </li>
             </Link>
             <Link to="/products" className="link">
-              <li className="sidebarListItem">
+              <li
+                className={`sidebarListItem ${
+                  location === "/products" ? "active" : ""
+                }`}
+              >
                 <Storefront className="sidebarIcon" />
                 Products
               </li>
             </Link>
-            <li className="sidebarListItem">
+            <li
+              className={`sidebarListItem ${
+                location === "/transactions" ? "active" : ""
+              }`}
+            >
               <AttachMoney className="sidebarIcon" />
               Transactions
             </li>

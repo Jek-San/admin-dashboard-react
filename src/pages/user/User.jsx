@@ -8,9 +8,9 @@ import {
   Publish,
 } from "@mui/icons-material"
 import "./user.css"
+import { Link } from "react-router-dom"
 
 import React from "react"
-import { Link } from "react-router-dom"
 
 const User = () => {
   return (
